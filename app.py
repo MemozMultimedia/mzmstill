@@ -1,6 +1,7 @@
 
 import streamlit as st
 import cv2
+
 import numpy as np
 import tempfile
 import zipfile
@@ -23,7 +24,7 @@ st.markdown("""
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    padding-top: 40px; /* Added space so logo doesn't cut */
+    padding-top: 40px; 
     margin-bottom: 25px; 
 }
 
@@ -71,7 +72,6 @@ st.markdown("""
     transform: translateY(-2px);
 }
 
-/* Shine Effect */
 .download-btn::after {
     content: '';
     position: absolute;
@@ -125,11 +125,13 @@ if uploaded_file:
     with c1: 
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.video(tfile.name)
+        # Recognizable Full Screen Button using built-in Streamlit functionality or CSS hint
+        st.caption("Tip: 📺 Use the control bar above for Full Screen.")
         st.markdown('</div>', unsafe_allow_html=True)
     with c2:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         num = st.slider("Stills Density", 4, 32, 12)
-        if st.button("GENERATE MASTER STILLS", use_container_width=True):
+        if st.button("⚡ GENERATE MASTER STILLS", use_container_width=True):
             with st.status("Neural Processing...", expanded=False):
                 cap = cv2.VideoCapture(tfile.name)
                 frames, scores = [], []
